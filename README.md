@@ -1,5 +1,5 @@
 # Cobol-Alura
-Códigos dos cursos da [Formação Cobol da Alura(https://unibb.alura.com.br/formacao-cobol)]
+Códigos dos cursos da [Formação Cobol da Alura](https://unibb.alura.com.br/formacao-cobol)
 
 Cursos Concluídos:
 [Cobol: desenvolvendo aplicações com dados](https://unibb.alura.com.br/course/cobol-desenvolvendo-aplicacoes)
