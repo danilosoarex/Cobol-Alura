@@ -4,7 +4,7 @@
        ENVIRONMENT    DIVISION.
        INPUT-OUTPUT   SECTION.
        FILE-CONTROL.
-           SELECT ARQCRM ASSIGN TO ".\DADOS\ARQCRM.DAT"
+           SELECT ARQCRM ASSIGN TO "..\DADOS\ARQCRM.DAT"
            ORGANIZATION  IS  INDEXED 
            ACCESS MODE IS RANDOM
            FILE STATUS IS ARQCRM-FS
@@ -18,12 +18,24 @@
        WORKING-STORAGE     SECTION.
        01  ARQCRM-FS         PIC 9(02) VALUE ZEROS.
 
+      *------------------- VARIAVEIS DE APOIO -------------------------*
+       01  WRK-SEGURATELA   PIC X(01) VALUE SPACES.
+
+       SCREEN     SECTION.
+       01  TELA.
+           05 BLANK SCREEN.
+
+
+
        PROCEDURE DIVISION.
            PERFORM INICIAR.
            PERFORM FINALIZAR.
+       
            GOBACK.
 
        INICIAR    SECTION.
+           DISPLAY TELA.
+
            OPEN INPUT ARQCRM.
            DISPLAY "STATUS ABERTURA " ARQCRM-FS
 
@@ -36,8 +48,13 @@
             WHEN OTHER
               DISPLAY "ERRO   "            LINE 01 COLUMN 01
               DISPLAY ARQCRM-FS            LINE 02 COLUMN 01  
+              ACCEPT WRK-SEGURATELA        LINE 20 COLUMN 01 
+              DISPLAY "APERTE UMA TECLA"   LINE 21 COLUMN 01
               GOBACK
            END-EVALUATE.
-       
+
+            DISPLAY "VOLTANDO.... APERTE UMA TECLA" LINE 21 COLUMN 01       
+            ACCEPT WRK-SEGURATELA          LINE 20 COLUMN 01.
+
        FINALIZAR     SECTION.
            CLOSE ARQCRM.
